@@ -8,20 +8,21 @@ def teest():
     match = re.search(r'(?<=JSON\.parse\(atob\(")([^"]+)(?="\)\))', decoded_string)
     if match:
         base64_string = match.group(1)
+        #print(base64_string)
         json_string = base64.b64decode(base64_string).decode('utf-8')
         json_data = json.loads(json_string)
         domain = "https://"+json_data.get("domain", "")
-        slug = json_data.get("slug", "")
+        id = json_data.get("id", "")
         urls = []
-        
+        #recording to this Url https://github.com/PatrickL546/How-to-download-hydrax-abyss.to#download
         for source in json_data.get("sources", []):
             label = source.get("label", "")
             if label == "360p":
-                urls.append(f"link 360p = {domain}/{slug}")
+                urls.append(f"link 360p = {domain}/{id}")
             elif label == "720p":
-                urls.append(f"link 720p = {domain}/www{slug}")
+                urls.append(f"link 720p = {domain}/www{id}")
             elif label == "1080p":
-                urls.append(f"link 1080p = {domain}/whw{slug}")
+                urls.append(f"link 1080p = {domain}/whw{id}")
 
         for url in urls:
             print(url)
